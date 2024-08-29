@@ -56,6 +56,18 @@ def device_widget(default="AUTO", exclude=None, added=None):
     return device
 
 
+def quantization_widget(default=True):
+    import ipywidgets as widgets
+
+    to_quantize = widgets.Checkbox(
+        value=default,
+        description="Quantization",
+        disabled=False,
+    )
+
+    return to_quantize
+
+
 def load_image(path: str) -> np.ndarray:
     """
     Loads an image from `path` and returns it as BGR numpy array. `path`
@@ -235,11 +247,15 @@ class VideoPlayer:
     :param skip_first_frames: Skip first N frames.
     """
 
-    def __init__(self, source, size=None, flip=False, fps=None, skip_first_frames=0):
+    def __init__(self, source, size=None, flip=False, fps=None, skip_first_frames=0, width=1280, height=720):
         import cv2
 
         self.cv2 = cv2  # This is done to access the package in class methods
         self.__cap = cv2.VideoCapture(source)
+        # try HD by default to get better video quality
+        self.__cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+        self.__cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+
         if not self.__cap.isOpened():
             raise RuntimeError(f"Cannot open {'camera' if isinstance(source, int) else ''} {source}")
         # skip first N frames
