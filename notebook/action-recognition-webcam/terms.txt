@@ -3,7 +3,6 @@ biking
 blow
 blowing
 bowling
-breaststroke
 brushing
 catch
 chucks
@@ -11,7 +10,6 @@ crawling
 cutting
 fencing
 hammering
-jerk
 juggling
 jump
 jumping
@@ -23,14 +21,11 @@ playing
 pull
 punch
 push
-pushups
 rafting
 riding
-rings
 rowing
 shaving
 shot
-shotput
 skiing
 surfing
 swing
